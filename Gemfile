@@ -26,11 +26,10 @@ group :development, :test do
   gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'main'
   gem "pry-rails"
   gem "rspec-rails", "~> 6.0.0"
-
+  gem "shoulda-matchers", "~> 5.0"
 end
 
 group :development do
   gem "web-console"
-  gem "shoulda-matchers", "~> 5.0"
 end
 
