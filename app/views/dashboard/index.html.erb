@@ -1,19 +1,63 @@
-<% if user_signed_in? %>
-    <h1>We are logged-in</h1>
-    <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete } %>
-    
-    <%= form_with model: Tweet.new, local: true do |form| %>
-        <%= form.text_field :body %>
-        <%= form.submit "create tweet" %>
-    <% end %>
 
-    <ul>
-        <% Tweet.find_each do |tweet| %>
-            <li><%= tweet.body %></li>
-        <% end %>
-    </ul>
-<% else %>
-    <h1>Hello, world!</h1>
-    <%= link_to "Sign up", new_user_registration_path %> |
-    <%= link_to "Sign in", new_user_session_path %>
-<% end %>
+<div class="container py-2">
+    <div class="row">
+        <aside class="col side-navbar">
+
+            <%= link_to root_path, class: "d-flex align-items-center fs-5 px-3 mb-2" do %>
+                <div class="px-2 py-2 rounded-circle">
+                    <%= image_tag 'twitter.png', width: "32" %>
+                </div>
+           <% end %>
+
+            <%= link_to root_path, class: "d-flex align-items-center fs-5 mb-2" do %>
+                <div class="px-4 py-2 rounded-pill">
+                    <span class="me-4 position-relative" style="bottom: 3px"><%= image_tag 'home.png', width: "32" %></span>
+                    Home
+                </div>
+           <% end %>
+
+            <%= link_to root_path, class: "d-flex align-items-center fs-5 mb-2" do %>
+                <div class="px-4 py-2 rounded-pill">
+                    <span class="me-4 position-relative" style="bottom: 3px"><%= image_tag 'home.png', width: "32" %></span>
+                    Explore
+                </div>
+           <% end %>
+
+            <%= link_to root_path, class: "d-flex align-items-center fs-5 mb-2" do %>
+                <div class="px-4 py-2 rounded-pill">
+                    <span class="me-4 position-relative" style="bottom: 3px"><%= image_tag 'home.png', width: "32" %></span>
+                    Notifications
+                </div>
+           <% end %>
+
+            <%= link_to root_path, class: "d-flex align-items-center fs-5 mb-2" do %>
+                <div class="px-4 py-2 rounded-pill">
+                    <span class="me-4 position-relative" style="bottom: 3px"><%= image_tag 'home.png', width: "32" %></span>
+                    Messages
+                </div>
+           <% end %>
+
+            <%= link_to root_path, class: "d-flex align-items-center fs-5 mb-2" do %>
+                <div class="px-4 py-2 rounded-pill">
+                    <span class="me-4 position-relative" style="bottom: 3px"><%= image_tag 'home.png', width: "32" %></span>
+                    Profile
+                </div>
+           <% end %>
+
+           <%= link_to root_path, class: "d-flex align-items-center fs-5 mb-2 px-4" do %>
+                <%= button_tag "Tweet", class: "btn btn-primary btn-lg rounded-pill" %>
+           <% end %>
+        </aside>
+
+        <div class="col">
+            <%= form_with model: Tweet.new, local: true do |form| %>
+                <%= form.text_field :body %>
+                <%= form.submit "create tweet" %>
+            <% end %>
+        </div>
+
+        <div class="col">
+            <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete } %>
+        </div>
+    </div>
+</div>
