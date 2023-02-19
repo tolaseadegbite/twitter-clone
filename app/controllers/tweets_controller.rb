@@ -1,9 +1,11 @@
 class TweetsController < ApplicationController
+    before_action :authenticate_user!
+
     def create
         @tweet = Tweet.new(tweet_params.merge(user: current_user))
 
         if @tweet.save
-            redirect_to root_url
+            redirect_to dashboard_url
         end
     end
 
