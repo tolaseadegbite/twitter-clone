@@ -11,8 +11,12 @@
   </head>
 
   <body>
-    <!--<p class="notice"><%#= notice %></p>
-    <p class="alert"><%#= alert %></p>-->
+    <% if flash.any? %>
+      <%= render 'shared/flashes' %>
+      <%# flash.each do |message_type, message| %>
+        <%#= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+      <%# end %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
