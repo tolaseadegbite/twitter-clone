@@ -13,10 +13,16 @@
   <body>
     <% if flash.any? %>
       <%= render 'shared/flashes' %>
-      <%# flash.each do |message_type, message| %>
-        <%#= content_tag(:div, message, class: "alert alert-#{message_type}") %>
-      <%# end %>
     <% end %>
-    <%= yield %>
+    <% if user_signed_in? %>
+      <div class="container py-2">
+        <div class="row">
+          <%= render 'shared/aside' %>
+          <%= yield %>
+        </div>
+      </div>
+    <% else %>
+      <%= yield %>
+    <% end %>
   </body>
 </html>
