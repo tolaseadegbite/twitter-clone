@@ -1,0 +1,7 @@
+<%= form_with model: Tweet.new, local: true do |form| %>
+    <%= form.text_area :body, placeholder: "What's happening?", class: "w-100 form-control tweet-input mb-4" %>
+
+    <div class="d-flex justify-content-end">
+        <%= form.submit "Tweet", class: "btn btn-twitter rounded-pill" %>
+    </div>
+<% end %>

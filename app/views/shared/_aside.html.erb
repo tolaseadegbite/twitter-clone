@@ -48,9 +48,23 @@
         </div>
     <% end %>
     
-    <%= link_to '#', class: "d-flex align-items-center fs-5 mb-2 py-3  px-4" do %>
-        <%= button_tag "Tweet", class: "btn btn-twitter btn-lg rounded-pill w-100" %>
-    <% end %>
+    <div class="d-flex align-items-center fs-5 mb-2 py-3  px-4">
+        <%= button_tag "Tweet", class: "btn btn-twitter btn-lg rounded-pill w-100", data: { "bs-toggle": "modal", "bs-target": "#tweetModal" } %>
+    </div>
 
     <%= link_to "Sign out", destroy_user_session_path, class: "twitter-link", data: { turbo_method: :delete } %>
 </aside>
+
+<!-- Modal -->
+<div class="modal" id="tweetModal" tabindex="-1" aria-labelledby="tweetModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header border-bottom-0">
+        <button type="button" class="btn-close mx-0" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= render 'shared/tweet_form' %>
+      </div>
+    </div>
+  </div>
+</div>
