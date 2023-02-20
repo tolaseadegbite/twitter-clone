@@ -5,9 +5,7 @@
     
     <%= render 'shared/tweet_form' %>
 
-    <% Tweet.find_each do |tweet| %>
-        <%= tweet.body %>
-    <% end %>
+    <%= render Tweet.order(created_at: :desc) %>
 </div>
 
 <div class="col">
