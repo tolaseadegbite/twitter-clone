@@ -5,7 +5,9 @@
     
     <%= render 'shared/tweet_form' %>
 
-    <%= render Tweet.order(created_at: :desc) %>
+    <div id="tweets">
+        <%= render Tweet.order(created_at: :desc) %>
+    </div>
 </div>
 
 <div class="col">

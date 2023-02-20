@@ -5,7 +5,10 @@ class TweetsController < ApplicationController
         @tweet = Tweet.new(tweet_params.merge(user: current_user))
 
         if @tweet.save
-            redirect_to dashboard_url
+            respond_to do |format|
+                format.html {redirect_to dashboard_url}
+                format.turbo_stream
+            end
         end
     end
 
