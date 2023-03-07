@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :tweets, dependent: :destroy
   validates :username, uniqueness: { case_sensitive: false }, allow_blank: true
 
+  has_one_attached :avatar
+
   before_save :set_display_name, if: -> { username.present? && display_name.blank? }
 
   def set_display_name
