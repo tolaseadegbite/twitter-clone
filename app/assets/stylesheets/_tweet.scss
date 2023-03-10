@@ -3,8 +3,36 @@
     -o-transition: all .2s ease-in;
     -webkit-transition: all .2s ease-in;
     transition: all .2s ease-in;
+
     &:hover,&:focus {
         background-color: $gray-100;
         cursor: pointer;
+    }
+
+    .action-links {
+        a {
+            span {
+                position: relative;
+                top: 2px;
+            }
+
+            &.views, &.replies, &.bookmarks {
+                &:hover {
+                    color: $twitter-blue !important;
+                }
+            }
+
+            &.retweets {
+                &:hover {
+                    color: $green-300 !important;
+                }
+            }
+
+            &.likes {
+                &:hover {
+                    color: $red-500 !important;
+                }
+            }
+        }
     }
 }

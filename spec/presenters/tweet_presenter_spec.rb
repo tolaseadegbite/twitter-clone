@@ -18,7 +18,7 @@ RSpec.describe TweetPresenter, type: :presenter do
         end
     end
 
-    context "Not up to 24 hours have passed" do
+    context "before a full day has passed" do
         it "dislays how many hours have passed" do
             tweet = create(:tweet)
             tweet.update! created_at: 2.hours.ago

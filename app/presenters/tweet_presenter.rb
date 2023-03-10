@@ -3,13 +3,13 @@ class TweetPresenter
 
     attr_reader :tweet
 
-    delegate :user, :body, to: :tweet
-    
-    delegate :display_name, :avatar, :username, to: :user
-    
     def initialize(tweet)
         @tweet = tweet
     end
+    
+    delegate :user, :body, to: :tweet
+    
+    delegate :display_name, :avatar, :username, to: :user
 
     def created_at
         if tweet.created_at < 1.day.ago

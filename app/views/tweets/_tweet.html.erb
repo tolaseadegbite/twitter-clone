@@ -6,6 +6,39 @@
     </div>
     <div class="flex-grow-1 ms-3">
         <p class="mb-0"><span class="fw-bolder"><%= tweet_presenter.display_name %> </span> <span class="text-muted">@<%= tweet_presenter.username %></span> · <%= tweet_presenter.created_at %></p>
-        <p class="mb-0"><%= tweet_presenter.body %></p>
+        <p><%= tweet_presenter.body %></p>
+
+        <div class="d-flex justify-content-between align-items-center action-links">
+            <div>
+                <%= link_to "#", class: "text-decoration-none text-black views" do %>
+                    <%= image_tag "bar-graph.png", size: "20x20", class: "me-1" %>
+                    <span>Views</span>
+                <% end %>
+            </div>
+            <div>
+                <%= link_to "#", class: "text-decoration-none text-black replies" do %>
+                    <%= image_tag "speech-bubble.png", size: "20x20", class: "me-1" %>
+                    <span>Replies</span>
+                <% end %>
+            </div>
+            <div>
+                <%= link_to "#", class: "text-decoration-none text-black retweets" do %>
+                    <%= image_tag "retweet.png", size: "20x20", class: "me-1" %>
+                    <span>Retweet</span>
+                <% end %>
+            </div>
+            <div>
+                <%= link_to "#", class: "text-decoration-none text-black likes" do %>
+                    <%= image_tag "heart-empty.png", size: "20x20", class: "me-1" %>
+                    <span>Likes</span>
+                <% end %>
+            </div>
+            <div>
+                <%= link_to "#", class: "text-decoration-none text-black bookmarks" do %>
+                    <%= image_tag "bookmark-white.png", size: "20x20", class: "me-1" %>
+                    <span>Bookmarks</span>
+                <% end %>
+            </div>
+        </div>
     </div>
 </div>
