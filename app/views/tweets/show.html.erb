@@ -1,0 +1,12 @@
+<div class="col-7">
+    <div class="mb-3">
+        <%= link_to :back, class: "fs-4 text-decoration-none text-black fw-semibold" do %>
+            <%= image_tag "back.png", size: "28x28", class: "me-4" %>
+            <span style="position:relative; top: 2px;">Tweet</span>
+        <% end %>
+    </div>
+</div>
+
+<div class="col">
+    <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete } %>
+</div>
