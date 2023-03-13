@@ -9,7 +9,7 @@ class TweetPresenter
         @current_user = user
     end
     
-    delegate :user, :body, :likes_count, to: :tweet
+    delegate :user, :body, :likes_count, :retweets_count, to: :tweet
     delegate :display_name, :avatar, :username, to: :user
 
     def created_at
@@ -77,6 +77,31 @@ class TweetPresenter
         end
     end
 
+    def retweet_tweet_url
+        if tweet_retweeted_by_current_user?
+            tweet_retweet_path(tweet, current_user.retweets.find_by(tweet: tweet))
+        else
+            tweet_retweets_path(tweet)
+        end
+    end
+
+    def retweet_image
+        if tweet_retweeted_by_current_user?
+            "retweet-filled.png"
+        else
+            "retweet.png"
+        end
+    end
+
+    def turbo_retweet_data_method
+        if tweet_retweeted_by_current_user?
+            "delete"
+        else
+            "post"
+        end
+    end
+
+
     private
     
     # can't memoize the question marked version of this method
@@ -89,4 +114,9 @@ class TweetPresenter
         @tweet_bookmarked_by_current_user ||= tweet.bookmarked_users.include?(current_user)
     end
     alias_method :tweet_bookmarked_by_current_user?,  :tweet_bookmarked_by_current_user
+
+    def tweet_retweeted_by_current_user
+        @tweet_retweeted_by_current_user ||= tweet.retweeted_users.include?(current_user)
+    end
+    alias_method :tweet_retweeted_by_current_user?,  :tweet_retweeted_by_current_user
 end
