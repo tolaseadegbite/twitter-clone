@@ -15,9 +15,7 @@
                <p class="fs-2 mb-1"><%= @tweet_presenter.body %></p>
                 <p class="text-muted"><%= @tweet_presenter.tweet.created_at.strftime("%l:%M %p") %> · <%= @tweet_presenter.tweet.created_at.strftime("%b %d, %Y") %></p>
 
-                <%= turbo_frame_tag "show_stats" do %>
-                    <%= render "show_stats", tweet_presenter: @tweet_presenter %>
-                <% end %>
+                <%= render "show_stats", tweet_presenter: @tweet_presenter %>
             </div>
         </div>
 
