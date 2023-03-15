@@ -10,4 +10,6 @@ RSpec.describe Tweet, type: :model do
   it { should have_many(:bookmarked_users).through(:bookmarks).source(:user) }
   it { should have_many(:retweets).dependent(:destroy) }
   it { should have_many(:retweeted_users).through(:retweets).source(:user) }
+  it { should have_many(:views) }
+  it { should have_many(:viewed_users).through(:views).source(:user) }
 end
