@@ -5,6 +5,7 @@ ruby "3.1.2"
 
 gem "bootsnap", require: false
 gem "cssbundling-rails"
+gem "delayed_job_active_record"
 gem "devise", github: "heartcombo/devise", branch: "main"
 gem "image_processing", "~> 1.2"
 gem "importmap-rails"
