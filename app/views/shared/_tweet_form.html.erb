@@ -1,7 +1,18 @@
-<%= form_with model: Tweet.new, url: tweets_path, method: :post, data: { controller: 'tweet-form' } do |form| %>
-    <%= form.text_area :body, placeholder: "What's happening?", class: "w-100 form-control tweet-input mb-4" %>
-
-    <div class="d-flex justify-content-end">
-        <%= form.submit "Tweet", class: "btn btn-twitter rounded-pill" %>
+<div class="tweet hover d-flex py-3 px-3">
+    <div class="flex-shrink-0">
+        <% if current_user.avatar.present? %>
+            <%= image_tag current_user.avatar, size: "48x48", class: "rounded-circle" %>
+        <% else %>
+            <%= image_tag 'user.png', size: "48x48", class: "rounded-circle" %>
+        <% end %>
     </div>
-<% end %>
+    <div class="flex-grow-1 ms-3">
+        <%= form_with model: Tweet.new, url: form_submit_path, method: :post, data: { controller: 'tweet-form' } do |form| %>
+            <%= form.text_area :body, placeholder: "What's happening?", class: "w-100 form-control tweet-input mb-4" %>
+
+            <div class="d-flex justify-content-end">
+                <%= form.submit button_label, class: "btn btn-twitter rounded-pill" %>
+            </div>
+        <% end %>
+    </div>
+</div>
