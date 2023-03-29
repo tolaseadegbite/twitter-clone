@@ -1,0 +1,29 @@
+<div class="col-7">
+    <div class="mb-3">
+        <div class="mb-5">
+            <%= link_to :back, class: "fs-4 text-decoration-none text-black fw-semibold" do %>
+                <%= image_tag "back.png", size: "28x28", class: "me-4" %>
+                <span style="position:relative; top: 2px;"><%= @user.username %></span>
+                <span class="text-muted fs-6" style="position:relative; top: 2px;"><%= pluralize(@user.tweets.size, "Tweet") %></span>
+            <% end %>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-5">
+            <div>
+                <% if @user.avatar.present? %>
+                    <%= image_tag @user.avatar, class: "rounded-circle", size: "150x150" %>
+                <% else %>
+                    <%= image_tag "user.png", class: "rounded-circle", size: "150x150" %>
+                <% end %>
+            </div>
+            <div>
+                <%= link_to "Follow", "#", class: "btn btn-outline-secondary rounded-pill" %>
+            </div>
+        </div>
+
+        <%= render "profiles/profile_section", user: @user %>
+    </div>
+</div>
+
+<div class="col">
+    <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete } %>
+</div>
