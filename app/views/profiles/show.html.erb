@@ -16,30 +16,26 @@
                 <% end %>
             </div>
             <div>
-                <%= link_to 'Edit profile',"/", class: "btn btn-twitter-outline rounded-pill" %>
+                <%= button_tag 'Edit profile', class: "btn btn-outline-secondary rounded-pill w-100", data: { "bs-toggle": "modal", "bs-target": "#profileEditModal" } %>
             </div>
         </div>
 
         <div>
             <p class="fs-3 fw-semibold mb-0"><%= current_user.display_name %></p>
             <p class="fs-3 fw-semibold mb-0"><%= current_user.username %></p>
-            <p>Bio</p>
-            <div class="d-flex justify-content-start mb-2">
+            <p><%= current_user.bio %></p>
+            <div class="d-flex justify-content-start mb-3">
                 <div class="me-4">
                     <%= image_tag "location.png", size: "23x23", class: "me-1" %>
-                    <span class="text-muted">Location</span>
+                    <span class="text-muted"><%= current_user.location %></span>
                 </div>
                 <div class="me-4">
                     <%= image_tag "url.png", size: "23x23", class: "me-1" %>
-                    <span class="text-muted">URL</span>
+                    <span class="text-muted"><%= current_user.url %></span>
                 </div>
                 <div class="me-4">
                     <%= image_tag "calendar.png", size: "23x23", class: "me-1" %>
-                    <span class="text-muted">Join Date</span>
-                </div>
-                <div class="me-4">
-                    <%= image_tag "location.png", size: "23x23", class: "me-1" %>
-                    <span class="text-muted">Location</span>
+                    <span class="text-muted">June, 2017</span>
                 </div>
             </div>
             <div class="d-flex justify-content-start">
@@ -52,4 +48,54 @@
 
 <div class="col">
     <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete } %>
+</div>
+
+
+<!-- Modal -->
+<div class="modal" id="profileEditModal" tabindex="-1" aria-labelledby="profileEditModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header border-bottom-0">
+        <button type="button" class="btn-close mx-0" data-bs-dismiss="modal" aria-label="Close", id="close-modal-btn"></button>
+      </div>
+      <div class="modal-body">
+        <%= form_with model: current_user, url: profile_path, class: "row g-3", locals: true, method: :put do |f| %>
+            <form class="row g-3">
+                <div class="col-md-12">
+                    <%= f.label :username, class: "form-label" %>
+                    <%= f.text_field :username, class: "form-control" %>
+                </div>
+                <div class="col-md-12">
+                    <%= f.label :display_name, class: "form-label" %>
+                    <%= f.text_field :display_name, class: "form-control" %>
+                </div>
+                <div class="col-md-12">
+                    <%= f.label :email, class: "form-label" %>
+                    <%= f.email_field :email, class: "form-control" %>
+                </div>
+                <div class="col-md-12">
+                    <%= f.label :email, class: "form-label" %>
+                    <%= f.email_field :email, class: "form-control" %>
+                </div>
+                <div class="col-md-12">
+                    <%= f.label :bio, class: "form-label" %>
+                    <%= f.text_area :bio, class: "form-control" %>
+                </div>
+                <div class="col-md-12">
+                    <%= f.label :location, class: "form-label" %>
+                    <%= f.text_field :location, class: "form-control" %>
+                </div>
+                <div class="col-md-12">
+                    <%= f.label :url, class: "form-label" %>
+                    <%= f.text_field :url, class: "form-control" %>
+                </div>
+
+                <div class="col-md-12">
+                    <%= f.submit "Update profile", class: "btn btn-twitter rounded-pill" %>
+                </div>
+            </form>      
+        <% end %>  
+      </div>
+    </div>
+  </div>
 </div>
