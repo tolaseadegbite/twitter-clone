@@ -15,13 +15,70 @@
                     <%= image_tag "user.png", class: "rounded-circle", size: "150x150" %>
                 <% end %>
             </div>
-            <%= render 'follow_button', user: @user, current_user: current_user %>
+
+            <% if controller_name == 'profiles' %>
+                <div><%= button_tag 'Edit profile', class: "btn btn-outline-secondary rounded-pill w-100", data: { "bs-toggle": "modal", "bs-target": "#profileEditModal" } %></div>
+            <% else %>
+                <%= render 'users/follow_button', user: @user, current_user: current_user %>
+            <% end %>
         </div>
 
-        <%= render "profiles/profile_section", user: @user %>
+        <%= render "users/profile_section", user: @user, current_user: current_user %>
+        
     </div>
 </div>
 
 <div class="col">
     <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete } %>
 </div>
+
+<% if controller_name == "profiles" %>
+    <!-- Modal -->
+    <div class="modal" id="profileEditModal" tabindex="-1" aria-labelledby="profileEditModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header border-bottom-0">
+            <button type="button" class="btn-close mx-0 close-modal-btn" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <%= form_with model: current_user, url: profile_path, data: { controller: 'tweet-form' }, class: "row g-3", locals: true, method: :put do |f| %>
+                <form class="row g-3">
+                    <div class="col-md-12">
+                        <%= f.label :username, class: "form-label" %>
+                        <%= f.text_field :username, class: "form-control" %>
+                    </div>
+                    <div class="col-md-12">
+                        <%= f.label :display_name, class: "form-label" %>
+                        <%= f.text_field :display_name, class: "form-control" %>
+                    </div>
+                    <div class="col-md-12">
+                        <%= f.label :avatar, class: "form-label" %>
+                        <%= f.file_field :avatar, class: "form-control" %>
+                    </div>
+                    <div class="col-md-12">
+                        <%= f.label :email, class: "form-label" %>
+                        <%= f.email_field :email, class: "form-control" %>
+                    </div>
+                    <div class="col-md-12">
+                        <%= f.label :bio, class: "form-label" %>
+                        <%= f.text_area :bio, class: "form-control" %>
+                    </div>
+                    <div class="col-md-12">
+                        <%= f.label :location, class: "form-label" %>
+                        <%= f.text_field :location, class: "form-control" %>
+                    </div>
+                    <div class="col-md-12">
+                        <%= f.label :profile_url, "URL", class: "form-label" %>
+                        <%= f.text_field :profile_url, class: "form-control" %>
+                    </div>
+
+                    <div class="col-md-12">
+                        <%= f.submit "Update profile", class: "btn btn-twitter rounded-pill" %>
+                    </div>
+                </form>      
+            <% end %>  
+        </div>
+        </div>
+    </div>
+    </div>
+<% end %>
