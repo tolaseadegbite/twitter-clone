@@ -1,0 +1,13 @@
+<div class="col-7">
+    <div class="mb-3">
+        <%= link_to "Bookmark", bookmarks_path, class: "fs-4 text-decoration-none text-black fw-semibold" %>
+    </div>
+
+    <div id="tweets">
+        <%= render partial: "tweets/tweet", collection: @tweet_presenters, as: :tweet_presenter %>
+    </div>
+</div>
+
+<div class="col">
+    <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete } %>
+</div>
