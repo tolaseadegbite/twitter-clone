@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
 
   resources :bookmarks, only: :index
+  resources :hashtags, only: :index, path: 'explore'
 
   get '/dashboard', to: 'dashboard#index'
   get '/profile', to: 'profiles#show'
