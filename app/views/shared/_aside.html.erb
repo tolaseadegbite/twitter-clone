@@ -6,7 +6,7 @@
         </div>
     <% end %>
 
-    <%= link_to dashboard_path, class: "d-flex align-items-center fs-5 mb-2" do %>
+    <%= link_to dashboard_path, class: "d-flex align-items-center fs-5 mb-2 #{nav_link_active?('dashboard')}" do %>
         <div class="px-4 py-2 rounded-pill">
             <span class="me-4 position-relative" style="bottom: 3px"><%= image_tag 'home.png', width: "32" %></span>
             Home
@@ -34,14 +34,14 @@
         </div>
     <% end %>
 
-    <%= link_to bookmarks_path, class: "d-flex align-items-center fs-5 mb-2" do %>
+    <%= link_to bookmarks_path, class: "d-flex align-items-center fs-5 mb-2 #{nav_link_active?('bookmarks')}" do %>
         <div class="px-4 py-2 rounded-pill">
             <span class="me-4 position-relative" style="bottom: 3px"><%= image_tag 'bookmark-aside.png', width: "32" %></span>
             Bookmark
         </div>
     <% end %>
 
-    <%= link_to profile_path, class: "d-flex align-items-center fs-5 mb-2" do %>
+    <%= link_to profile_path, class: "d-flex align-items-center fs-5 mb-2 #{nav_link_active?('profiles')}" do %>
         <div class="px-4 py-2 rounded-pill">
             <span class="me-4 position-relative" style="bottom: 3px"><%= image_tag 'user.png', width: "32" %></span>
             Profile
