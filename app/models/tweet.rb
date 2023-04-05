@@ -16,4 +16,5 @@ class Tweet < ApplicationRecord
               optional: true,
               counter_cache: :reply_tweets_count
   has_many :reply_tweets, foreign_key: :parent_tweet_id, class_name: "Tweet"
+  has_and_belongs_to_many :hashtags
 end
