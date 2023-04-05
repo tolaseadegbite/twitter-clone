@@ -1,7 +1,9 @@
 a.twitter-link {
     color: $twitter-blue;
     text-decoration: none;
+    
     &:hover, &:focus {
         text-decoration: underline;
+        cursor: pointer;
     }
 }

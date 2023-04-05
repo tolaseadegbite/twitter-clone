@@ -6,7 +6,7 @@
         </div>
         <div class="flex-grow-1 ms-3">
             <p class="mb-0"><span class="fw-bolder"><%= tweet_presenter.display_name %> </span> <span class="text-muted">@<%= tweet_presenter.username %></span> · <%= tweet_presenter.created_at %></p>
-            <%= tweet_presenter.body_html.html_safe %>
+            <%= sanitize(tweet_presenter.body_html) %>
 
             <div class="d-flex justify-content-between align-items-center action-links">
                 <div>
