@@ -1,5 +1,28 @@
 <%= turbo_frame_tag "profile_section" do %>
     <div id="profile_section">
+        <div class="mb-5">
+            <%= link_to :back, class: "fs-4 text-decoration-none text-black fw-semibold" do %>
+                <%= image_tag "back.png", size: "28x28", class: "me-4" %>
+                <span style="position:relative; top: 2px;"><%= @user.username %></span>
+                <span class="text-muted fs-6" style="position:relative; top: 2px;"><%= pluralize(@user.tweets.size, "Tweet") %></span>
+            <% end %>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-5">
+            <div>
+                <% if @user.avatar.present? %>
+                    <%= image_tag @user.avatar, class: "rounded-circle", size: "150x150" %>
+                <% else %>
+                    <%= image_tag "user.png", class: "rounded-circle", size: "150x150" %>
+                <% end %>
+            </div>
+
+            <% if controller_name == 'profiles' %>
+                <div><%= button_tag 'Edit profile', class: "btn btn-outline-secondary rounded-pill w-100", data: { "bs-toggle": "modal", "bs-target": "#profileEditModal" } %></div>
+            <% else %>
+                <%= render 'users/follow_button', user: @user, current_user: current_user %>
+            <% end %>
+        </div>
+        
         <div>
             <p class="fs-3 fw-semibold mb-0"><%= user.display_name %></p>
             <p class="fs-3 fw-semibold mb-0"><%= user.username %></p>

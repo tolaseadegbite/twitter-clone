@@ -11,6 +11,9 @@ class ProfilesController < ApplicationController
 
     def update
         @user = current_user
+        @tweet_presenters = @user.tweets.map do |tweet|
+            TweetPresenter.new(tweet: tweet, current_user: @user)
+        end
         if @user.update(user_params)
             respond_to do |format|
                 # flash[:notice] = "Your profile has been updated"
