@@ -1,5 +1,5 @@
 <div class="col-7">
-    <div class="mb-3">
+    <div class="mb-5">
         
         <%= render "users/profile_section", user: @user, current_user: current_user %>
 
@@ -12,7 +12,16 @@
 </div>
 
 <div class="col">
-    <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete } %>
+    <div class="hashtag-sidebar p-2 rounded">
+        <p class="p-2 fs-4 fw-bold mb-0">What's happening</p>
+        <% Hashtag.limit(5).each do |hashtag| %>
+            <div class="item p-2" data-controller="hashtag" data-url="<%= hashtag_path(hashtag) %>">
+                <p class="fw-bold mb-0 fs-5"><%= hashtag.tag %> </p>
+                <p class="text-muted fs-6 mb-0"><%= pluralize(hashtag.tweets.size, "Tweet") %> </p>
+            </div>
+        <% end %>
+        <%= link_to "Show more", hashtags_path, class: "twitter-link p-2" %>
+    </div>
 </div>
 
 <% if controller_name == "profiles" %>
