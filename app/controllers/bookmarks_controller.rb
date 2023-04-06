@@ -2,7 +2,7 @@ class BookmarksController < ApplicationController
     before_action :authenticate_user!
 
     def index
-        @tweet_presenters = current_user.bookmarked_tweets.map do |tweet|
+        @tweet_presenters = current_user.bookmarked_tweets.order(created_at: :desc).map do |tweet|
             TweetPresenter.new(tweet: tweet, current_user: @user)
         end
     end

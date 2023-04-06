@@ -1,9 +1,13 @@
 <div class="col-7">
-    <div class="mb-3">
-        <%= link_to @hashtag.tag, hashtags_path, class: "fs-4 text-decoration-none text-black fw-semibold" %>
+    <div class="mb-5">
+        <%= link_to :back, class: "fs-4 text-decoration-none text-black fw-semibold" do %>
+            <%= image_tag "back.png", size: "28x28", class: "me-4" %>
+            <span style="position:relative; top: 2px;"><%= @hashtag.tag %></span>
+        <% end %>
     </div>
 
-    
+    <%= render partial: "tweets/tweet", collection: @tweet_presenters, as: :tweet_presenter %>
+
 </div>
 
 <div class="col">
