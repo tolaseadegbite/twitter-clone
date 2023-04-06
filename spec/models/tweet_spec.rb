@@ -31,6 +31,11 @@ RSpec.describe Tweet, type: :model do
           Tweet.create(user: user, body: "Mary has a #little #lamb")
         end.to change { Hashtag.count }.by(2)
       end
+
+      it "creates hashtags assignned to the tweet" do
+        tweet = Tweet.create(user: user, body: "My nickname is #Tolase and I am a #Rails developer")
+        expect(tweet.hashtags.size).to eq(2)
+      end
     end
 
     context "when there are duplicate hashtags in the body" do

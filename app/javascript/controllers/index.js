@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import HashtagController from "./hashtag_controller"
+application.register("hashtag", HashtagController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 

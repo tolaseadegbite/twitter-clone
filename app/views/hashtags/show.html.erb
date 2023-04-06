@@ -1,9 +1,9 @@
 <div class="col-7">
     <div class="mb-3">
-        <%= link_to "Explore", hashtags_path, class: "fs-4 text-decoration-none text-black fw-semibold" %>
+        <%= link_to @hashtag.tag, hashtags_path, class: "fs-4 text-decoration-none text-black fw-semibold" %>
     </div>
 
-    <%= render @hashtags %>
+    
 </div>
 
 <div class="col">
