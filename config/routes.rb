@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :bookmarks, only: :index
   resources :hashtags, only: [:index, :show], path: 'explore'
   resources :message_threads, only: :index, path: 'messages'
+  resources :messages, only: :create
 
   get '/dashboard', to: 'dashboard#index'
   get '/profile', to: 'profiles#show'
