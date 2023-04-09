@@ -10,6 +10,9 @@ application.register("hashtag", HashtagController)
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
+import MessagesController from "./messages_controller"
+application.register("messages", MessagesController)
+
 import TweetCardController from "./tweet_card_controller"
 application.register("tweet-card", TweetCardController)
 
