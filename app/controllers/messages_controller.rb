@@ -5,6 +5,7 @@ class MessagesController < ApplicationController
         @message_thread = MessageThread.find(params[:message_thread_id])
         @messages = @message_thread.messages
         @user = @messages.where.not(user: current_user).first.user
+        # @user = User.find(params[:other_user_id])
 
         respond_to do |format|
             format.turbo_stream

@@ -14,13 +14,17 @@ export default class extends Controller {
 
         this.messageThreadTargets.forEach((messageThread) => {
           messageThread.classList.remove('active');
-        });
+        })
 
         messageThread.classList.add('active');
 
         fetch(`/messages/${messageThread.dataset.messageThreadId}/messages`, { headers: this.headers })
           .then(response => response.text())
           .then(html => Turbo.renderStreamMessage(html));
+
+          // fetch(`/messages/${messageThread.dataset.messageThreadId}/messages?other_user_id=${messageThread.dataset.messagesTargetUserId}`, { headers: this.headers })
+          // .then(response => response.text())
+          // .then(html => Turbo.renderStreamMessage(html));
       });
     });
     const queryString = window.location.search;
@@ -28,7 +32,7 @@ export default class extends Controller {
 
     if (urlParams.get('user_id') !== null) {
       this.element.querySelector(`[data-messages-target-user-id="${urlParams.get('user_id')}"]`).click();
-      this.element.querySelector(`[data-messages-target-user-id="${urlParams.get('user_id')}"]`).classList.add('active')
+      this.element.querySelector(`[data-messages-target-user-id="${urlParams.get('user_id')}"]`).classList.add('active');
     }
   }
 }
