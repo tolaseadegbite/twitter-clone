@@ -6,7 +6,7 @@ class TweetPresenter
 
     def initialize(tweet:, current_user:)
         @tweet = tweet
-        @current_user = user
+        @current_user = current_user
     end
     
     delegate :user, :likes_count, :retweets_count, :views_count, :reply_tweets_count, to: :tweet

@@ -17,6 +17,7 @@ RSpec.describe User, type: :model do
   it { should have_many(:followers).through(:reverse_followings).source(:user) }
   it { should have_many(:messages) }
   it { should have_and_belong_to_many(:message_threads) }
+  it { shpuld have_many(:notifications).dependent(:destroy) }
 
   describe "#set_display_name" do
     context "when display name is set" do
