@@ -1,27 +1,38 @@
 <div class="col-7">
-    <div class="mb-5">
+    <div class="mb-2">
         <%= link_to "Notifications", notifications_path, class: "fs-4 text-decoration-none text-black fw-semibold" %>
     </div>
 
     <div id="tweets">
-        <p>All Notifications</p>
         <% @notifications.each do |notification| %>
             <% if notification.followed_me? %>
                 <div>
                     <% if notification.actor.avatar.present? %>
                         <%= link_to user_path(notification.actor) do %>
-                            <%= image_tag notification.actor.avatar, size: "48x48", class: "rounded-circle" %>
+                            <%= image_tag notification.actor.avatar, size: "48x48", class: "rounded-circle mb-1" %>
                         <% end %>
                     <% else %>
-                        <%= image_tag "user.png", size: "48x48", class: "rounded-circle" %>
+                        <%= image_tag "user.png", size: "48x48", class: "rounded-circle mb-1" %>
                     <% end %>
                     <p><span class="fw-bold"><%= notification.actor.display_name %></span> followed you</p>
                 </div>
-            <% elsif notification.liked_post? %>
-
+            <% elsif notification.liked_tweet? %>
+                <div>
+                    <% if notification.actor.avatar.present? %>
+                        <%= link_to user_path(notification.actor) do %>
+                            <%= image_tag notification.actor.avatar, size: "48x48", class: "rounded-circle mb-1" %>
+                        <% end %>
+                    <% else %>
+                        <%= image_tag "user.png", size: "48x48", class: "rounded-circle mb-1" %>
+                    <% end %>
+                    <p><span class="fw-bold"><%= notification.actor.display_name %></span> liked your tweet</p>
+                    <p class="text-muted mb-1"><%= notification.tweet.body %></p>
+                    <%= link_to "Show all", tweet_path(notification.tweet), class: "tweet-link mb-1" %>
+                </div>
             <% elsif notification.mentioned_me? %>
 
             <% end %>
+            <hr>
         <% end %>
     </div>
 </div>
