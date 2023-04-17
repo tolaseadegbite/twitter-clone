@@ -19,6 +19,7 @@ class Tweet < ApplicationRecord
               optional: true,
               counter_cache: :reply_tweets_count
   has_many :reply_tweets, foreign_key: :parent_tweet_id, class_name: "Tweet"
+  has_many :replied_tweets_users, through: :reply_tweets, source: :user
   has_and_belongs_to_many :hashtags
   has_many :mentions, dependent: :destroy
   has_many :mentioned_users, through: :mentions
@@ -45,7 +46,10 @@ class Tweet < ApplicationRecord
       mentioned_user = User.find_by(username: mention.delete("@"))
       next if mentioned_user.blank?
 
-      mentions.find_or_create_by(mentioned_user: mentioned_user)
+      next if mentions.exists?(mentioned_user: mentioned_user)
+
+      mentions.create(mentioned_user: mentioned_user)
+      Notification.create(user: mentioned_user, actor: user, verb: "mentioned-me", tweet: self)
     end
   end
 end

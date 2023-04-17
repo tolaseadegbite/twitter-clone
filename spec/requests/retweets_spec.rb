@@ -13,6 +13,13 @@ RSpec.describe "Retweets", type: :request do
             end.to change { Retweet.count }.by(1)
             expect(response).to have_http_status(:redirect)
         end
+
+        it "creates a new notification" do
+            expect do
+                post tweet_retweets_path(tweet)
+            end.to change { Notification.count }.by(1)
+            expect(response).to have_http_status(:redirect)
+        end
     end
 
     describe "DELETE destroy" do

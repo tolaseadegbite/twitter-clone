@@ -3,6 +3,9 @@ class RetweetsController < ApplicationController
 
     def create
         @retweet = current_user.retweets.create(tweet: tweet)
+        if @retweet.user != tweet.user
+            Notification.create(user: tweet.user, actor: @retweet.user, tweet: tweet, verb: "retweeted-tweet")
+        end
         respond_to do |format|
             format.html { redirect_to dashboard_url }
             format.turbo_stream

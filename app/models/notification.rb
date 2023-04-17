@@ -3,7 +3,7 @@ class Notification < ApplicationRecord
   belongs_to :actor, class_name: "User"
   belongs_to :tweet, optional: true
   
-  VERBS = %w[ followed-me liked-tweet mentioned-me].freeze
+  VERBS = %w[ followed-me liked-tweet mentioned-me replied-me retweeted-tweet].freeze
 
   VERBS.each do |v|
     define_method("#{v.gsub("-", "_")}?") { v == verb }

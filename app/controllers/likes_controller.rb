@@ -3,7 +3,9 @@ class LikesController < ApplicationController
    
      def create
         @like = current_user.likes.create(tweet: tweet)
-        Notification.create(user: tweet.user, actor: current_user, verb: "liked-tweet", tweet: tweet)
+        if @like.user != @like.user
+          Notification.create(user: tweet.user, actor: current_user, verb: "liked-tweet", tweet: tweet)
+        end
         respond_to do |format|
           format.html { redirect_to dashboard_url }
           format.turbo_stream

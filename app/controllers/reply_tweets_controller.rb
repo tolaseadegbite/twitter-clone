@@ -2,7 +2,10 @@ class ReplyTweetsController < ApplicationController
     before_action :authenticate_user!
     
     def create
-        @tweet = tweet.reply_tweets.create(tweet_params.merge(user: current_user))
+        @reply_tweet = tweet.reply_tweets.create(tweet_params.merge(user: current_user))
+        if @reply_tweet.user != tweet.user
+            Notification.create(user: tweet.user, actor: @reply_tweet.user, verb: "replied-me", tweet: @reply_tweet)
+        end
         if @tweet.save
             respond_to do |format|
                 format.html {redirect_to dashboard_url}

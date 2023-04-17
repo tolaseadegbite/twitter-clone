@@ -30,7 +30,44 @@
                     <%= link_to "Show all", tweet_path(notification.tweet), class: "tweet-link mb-1" %>
                 </div>
             <% elsif notification.mentioned_me? %>
-
+                <div class="notification p-2">
+                    <% if notification.actor.avatar.present? %>
+                        <%= link_to user_path(notification.actor) do %>
+                            <%= image_tag notification.actor.avatar, size: "48x48", class: "rounded-circle mb-1" %>
+                        <% end %>
+                    <% else %>
+                        <%= image_tag "user.png", size: "48x48", class: "rounded-circle mb-1" %>
+                    <% end %>
+                    <p class="mb-0"><span class="fw-bold"><%= notification.actor.display_name %></span> mentioned you</p>
+                    <p class="text-muted mb-1"><%= notification.tweet.body %></p>
+                    <%= link_to "Show all", tweet_path(notification.tweet), class: "tweet-link mb-1" %>
+                </div>
+            <% elsif notification.replied_me? %>
+                <div class="notification p-2">
+                    <% if notification.actor.avatar.present? %>
+                        <%= link_to user_path(notification.actor) do %>
+                            <%= image_tag notification.actor.avatar, size: "48x48", class: "rounded-circle mb-1" %>
+                        <% end %>
+                    <% else %>
+                        <%= image_tag "user.png", size: "48x48", class: "rounded-circle mb-1" %>
+                    <% end %>
+                    <p class="mb-0"><span class="fw-bold"><%= notification.actor.display_name %></span> replied you</p>
+                    <p class="text-muted mb-1"><%= notification.tweet.body %></p>
+                    <%= link_to "Show all", tweet_path(notification.tweet), class: "tweet-link mb-1" %>
+                </div>
+            <% elsif notification.retweeted_tweet? %>
+                <div class="notification p-2">
+                    <% if notification.actor.avatar.present? %>
+                        <%= link_to user_path(notification.actor) do %>
+                            <%= image_tag notification.actor.avatar, size: "48x48", class: "rounded-circle mb-1" %>
+                        <% end %>
+                    <% else %>
+                        <%= image_tag "user.png", size: "48x48", class: "rounded-circle mb-1" %>
+                    <% end %>
+                    <p class="mb-0"><span class="fw-bold"><%= notification.actor.display_name %></span> retweeted your tweet</p>
+                    <p class="text-muted mb-1"><%= notification.tweet.body %></p>
+                    <%= link_to "Show all", tweet_path(notification.tweet), class: "tweet-link mb-1" %>
+                </div>
             <% end %>
         <% end %>
     </div>
