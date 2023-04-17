@@ -1,0 +1,22 @@
+<div class="col-7">
+    <div class="mb-5">
+        <%= link_to "Notifications", notifications_path, class: "fs-4 text-decoration-none text-black fw-semibold" %>
+    </div>
+
+    <div id="tweets">
+        <p>All Notifications</p>
+    </div>
+</div>
+
+<div class="col">
+    <div class="hashtag-sidebar p-2 rounded">
+        <p class="p-2 fs-4 fw-bold mb-0">What's happening</p>
+        <% Hashtag.limit(5).each do |hashtag| %>
+            <div class="item p-2" data-controller="hashtag" data-url="<%= hashtag_path(hashtag) %>">
+                <p class="fw-bold mb-0 fs-5"><%= hashtag.tag %> </p>
+                <p class="text-muted fs-6 mb-0"><%= pluralize(hashtag.tweets.size, "Tweet") %> </p>
+            </div>
+        <% end %>
+        <%= link_to "Show more", hashtags_path, class: "twitter-link p-2" %>
+    </div>
+</div>

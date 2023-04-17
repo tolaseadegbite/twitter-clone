@@ -20,7 +20,7 @@
         </div>
     <% end %>
 
-    <%= link_to '#', class: "d-flex align-items-center fs-5 mb-2" do %>
+    <%= link_to notifications_path, class: "#{ nav_link_active?('notifications') } d-flex align-items-center fs-5 mb-2" do %>
         <div class="px-4 py-2 rounded-pill">
             <span class="me-4 position-relative" style="bottom: 3px"><%= image_tag 'notification.png', width: "32" %></span>
             Notifications

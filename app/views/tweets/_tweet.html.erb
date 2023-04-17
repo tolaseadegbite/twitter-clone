@@ -2,7 +2,7 @@
 
     <div data-controller="tweet-card" data-tweet-path="<%= tweet_path(tweet_presenter.tweet) %>" class="tweet py-3 px-3 d-flex hover">
         <div class="flex-shrink-0">
-            <%= image_tag tweet_presenter.avatar, size: "46x50", class: "rounded-circle" %>
+            <%= image_tag tweet_presenter.avatar, size: "50x50", class: "rounded-circle" %>
         </div>
         <div class="flex-grow-1 ms-3">
             <p class="mb-0"><span class="fw-bolder"><%= tweet_presenter.display_name %> </span> <span class="text-muted">@<%= tweet_presenter.username %></span> · <%= tweet_presenter.created_at %></p>
