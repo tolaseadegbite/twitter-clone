@@ -5,6 +5,9 @@
 
     <div id="tweets">
         <p>All Notifications</p>
+        <% @notifications.each do |notification| %>
+            <%= notification.id %>
+        <% end %>
     </div>
 </div>
 
