@@ -6,7 +6,22 @@
     <div id="tweets">
         <p>All Notifications</p>
         <% @notifications.each do |notification| %>
-            <%= notification.id %>
+            <% if notification.followed_me? %>
+                <div>
+                    <% if notification.actor.avatar.present? %>
+                        <%= link_to user_path(notification.actor) do %>
+                            <%= image_tag notification.actor.avatar, size: "48x48", class: "rounded-circle" %>
+                        <% end %>
+                    <% else %>
+                        <%= image_tag "user.png", size: "48x48", class: "rounded-circle" %>
+                    <% end %>
+                    <p><span class="fw-bold"><%= notification.actor.display_name %></span> followed you</p>
+                </div>
+            <% elsif notification.liked_post? %>
+
+            <% elsif notification.mentioned_me? %>
+
+            <% end %>
         <% end %>
     </div>
 </div>
