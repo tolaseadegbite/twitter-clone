@@ -15,6 +15,8 @@ RSpec.describe Tweet, type: :model do
   it { should belong_to(:parent_tweet).with_foreign_key(:parent_tweet_id).class_name("Tweet").inverse_of(:reply_tweets).optional }
   it { should have_many(:reply_tweets).with_foreign_key(:parent_tweet_id).class_name("Tweet") }
   it { should have_and_belong_to_many(:hashtags) }
+  it { should have_many(:mentions).dependent(:destroy) }
+  it { should have_many(:mentioned_users).through(:mentions) }
 
   describe "saving hashtags" do
     let(:user) { create(:user) }
