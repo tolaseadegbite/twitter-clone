@@ -1,6 +1,14 @@
 <div class="col-7">
-    <div class="mb-2">
-        <%= link_to "Notifications", notifications_path, class: "fs-4 text-decoration-none text-black fw-semibold" %>
+    <div class="mb-2 d-flex justify-content-between align-items-center">
+        <div>
+            <%= link_to "Notifications", notifications_path, class: "fs-4 text-decoration-none text-black fw-semibold" %>
+        </div>
+
+        <div>
+            <% if @notifications.any? %>
+                <%= link_to "Clear all", notifications_delete_all_path, class: "text-danger", data: { "turbo-method": :get, turbo_confirm: "Are you sure?" } %>
+            <% end %>
+        </div>
     </div>
 
     <div id="tweets">

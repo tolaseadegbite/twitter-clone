@@ -27,4 +27,5 @@ Rails.application.routes.draw do
   end
 
   resources :notifications, only: :index
+  get 'notifications/delete_all'
 end
