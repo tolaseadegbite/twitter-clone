@@ -3,7 +3,7 @@ class LikesController < ApplicationController
    
      def create
         @like = current_user.likes.create(tweet: tweet)
-        if @like.user != @like.user
+        if @like.user != tweet.user
           Notification.create(user: tweet.user, actor: current_user, verb: "liked-tweet", tweet: tweet)
         end
         respond_to do |format|
