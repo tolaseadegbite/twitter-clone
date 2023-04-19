@@ -10,9 +10,11 @@ class TweetsController < ApplicationController
     end
 
     def create
-        @tweet = Tweet.new(tweet_params.merge(user: current_user))
+        @tweet = Tweet.create(tweet_params.merge(user: current_user))
 
-        if @tweet.save
+        TweetActivity::TweetedJob.perform_later(actor: current_user, tweet: @tweet)
+
+        if @tweet.persisted?
             respond_to do |format|
                 format.html {redirect_to dashboard_url}
                 format.turbo_stream
