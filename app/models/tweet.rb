@@ -18,7 +18,7 @@ class Tweet < ApplicationRecord
               class_name: "Tweet", 
               optional: true,
               counter_cache: :reply_tweets_count
-  has_many :reply_tweets, foreign_key: :parent_tweet_id, class_name: "Tweet"
+  has_many :reply_tweets, foreign_key: :parent_tweet_id, class_name: "Tweet", dependent: :destroy
   has_many :replied_tweets_users, through: :reply_tweets, source: :user
   has_and_belongs_to_many :hashtags
   has_many :mentions, dependent: :destroy

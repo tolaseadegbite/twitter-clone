@@ -5,8 +5,9 @@ class ReplyTweetsController < ApplicationController
         @reply_tweet = tweet.reply_tweets.create(tweet_params.merge(user: current_user))
         if current_user != tweet.user
             Notification.create(user: tweet.user, actor: @reply_tweet.user, verb: "replied-me", tweet: @reply_tweet)
+
+            TweetActivity::RepliedJob.perform_later(actor: current_user, tweet: @reply_tweet)
         end
-        TweetActivity::RepliedJob.perform_later(actor: current_user, tweet: tweet)
         if @reply_tweet.save
             respond_to do |format|
                 format.html {redirect_to dashboard_url}

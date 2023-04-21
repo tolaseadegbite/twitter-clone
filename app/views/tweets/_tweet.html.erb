@@ -46,3 +46,9 @@
         </div>
     </div>
 <% end %>
+
+<%# if tweet_presenter.tweet.parent_tweet_id.present? %>
+    <%# current_user.tweet_activities.where(verb: "replied", tweet: tweet_presenter.tweet).each do |tweet_activity| %>
+        <%#= tweet_activity.tweet.parent_tweet.body %>
+    <%# end %>
+<%# end %>
