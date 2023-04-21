@@ -2,15 +2,29 @@ class TweetPresenter
     include ActionView::Helpers::DateHelper
     include Rails.application.routes.url_helpers
 
-    attr_reader :tweet, :current_user
+    attr_reader :tweet, :current_user, :tweet_activity
 
-    def initialize(tweet:, current_user:)
+    def initialize(tweet:, current_user:, tweet_activity: nil)
         @tweet = tweet
         @current_user = current_user
+        @tweet_activity = tweet_activity
     end
     
     delegate :user, :likes_count, :retweets_count, :views_count, :reply_tweets_count, to: :tweet
     delegate :display_name, :username, to: :user
+
+    def render_tweet_activity?
+        return false unless tweet_activity
+
+        tweet_activity.verb.in?(TweetActivity::VERBS - %w[tweeted])
+    end
+
+    def tweet_activity_html
+        case tweet_activity.verb
+        when "liked"
+            "<p class=\" fw-bold text-muted fs-6 mb-0 tweet-activity-label \">#{tweet_activity.actor.display_name} liked</p>"
+        end
+    end
 
     def created_at
         # tweet.created_at < 1.day.ago

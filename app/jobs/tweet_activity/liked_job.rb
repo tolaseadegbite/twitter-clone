@@ -7,4 +7,6 @@ class TweetActivity::LikedJob < ApplicationJob
     end
     TweetActivity.import tweet_activities, on_duplicate_key_ignore: true, batch_size: 500
   end
+
+  
 end

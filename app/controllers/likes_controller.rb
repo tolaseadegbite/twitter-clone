@@ -3,10 +3,10 @@ class LikesController < ApplicationController
    
      def create
         @like = current_user.likes.create(tweet: tweet)
-        if @like.user != tweet.user
-          Notification.create(user: tweet.user, actor: current_user, verb: "liked-tweet", tweet: tweet)
-        end
-        TweetActivity::LikedJob.perform_later(actor: current_user, tweet: tweet)
+     #    if current_user != tweet.user
+     #      Notification.create(user: tweet.user, actor: current_user, verb: "liked-tweet", tweet: tweet)
+     #    end
+     #    TweetActivity::LikedJob.perform_later(actor: current_user, tweet: tweet)
         respond_to do |format|
           format.html { redirect_to dashboard_url }
           format.turbo_stream
@@ -16,6 +16,7 @@ class LikesController < ApplicationController
      def destroy
           @like = tweet.likes.find(params[:id])
           @like.destroy
+          # TweetActivity::DestroyLikeJob.perform_later(actor: current_user, tweet: tweet)
           respond_to do |format|
                format.html { redirect_to dashboard_url }
                format.turbo_stream

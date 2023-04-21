@@ -1,4 +1,5 @@
 <div id="tweet_stats">
+    <%#= @tweet_presenter.tweet.liked_users.pluck(:username) %>
     <div class="d-flex justify-content-start mb-4">
         <div class="me-4"><span class="fw-bold"><%= tweet_presenter.views_count %></span> Views</div>
         <div class="me-4"><span class="fw-bold"><%= tweet_presenter.reply_tweets_count %></span> Replies</div>
